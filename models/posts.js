@@ -14,37 +14,28 @@ const lodgingSchema = new Schema({
     type: String,
     required: true,
   },
+  images: [String],
+  title: { type: String, required: true },
+  is_favorite: { type: Boolean, required: true },
+  is_premium: { type: Boolean, required: true },
+  rating: { type: Number, required: true },
+  type: { type: String, required: true },
+  bedrooms: { type: Number, required: true },
+  max_adults: { type: Number, required: true },
+  price: { type: String, required: true },
+  goods: [String],
+  description: { type: String, required: true },
+  location: {
+    latitude: { type: Number, required: true },
+    longitude: { type: Number, required: true },
+    zoom: { type: Number, required: true },
+  },
 });
 
 module.exports = mongoose.model("Posts", lodgingSchema);
-
-// {
-//   city: {
-//     name: `Dusseldorf`,
-//     location: {latitude: 51.225402, longitude: 6.776314, zoom: 13}
-//   },
-//   preview_image: `https://htmlacademy-react-2.appspot.com/six-cities/static/hotel/9.jpg`,
-//   images: [
-//     `https://htmlacademy-react-2.appspot.com/six-cities/static/hotel/5.jpg`,
-//   ],
-//   title: `Canal View Prinsengracht`,
-//   is_favorite: false,
-//   is_premium: false,
-//   rating: 3.1,
-//   type: `room`,
-//   bedrooms: 1,
-//   max_adults: 2,
-//   price: 101,
-//   goods: [`Breakfast`, `Laptop friendly workspace`],
-//   host: {
-//     id: 25,
-//     name: `Angelina`,
-//     is_pro: true,
-//     avatar_url: `img/avatar-angelina.jpg`
-//   },
-//   description: `This is a place for dreamers to reset, reflect, and create. Designed with a 'slow' pace in mind, our hope is that you enjoy every part of your stay; from making local coffee by drip in the morning, choosing the perfect record to put on as the sun sets.`,
-//   location: {latitude: 51.248402000000006, longitude: 6.763314, zoom: 16},
-//   id: 1
-// },
-
-// module.exports = mongoose.model("Lodging", lodgingSchema);
+// "host": {
+//   "id": 25,
+//   "name": "Angelina",
+//   "is_pro": true,
+//   "avatar_url": "img/avatar-angelina.jpg"
+// }

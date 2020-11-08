@@ -21,7 +21,7 @@ app.use(
   })
 );
 
-app.use("/", (req, res, next) => {
+app.use("/q", (req, res, next) => {
   console.log("qqqq");
   const post = new Posts({
     city: {
@@ -30,13 +30,33 @@ app.use("/", (req, res, next) => {
     },
     preview_image:
       "https://htmlacademy-react-2.appspot.com/six-cities/static/hotel/9",
+    images: [
+      "https://htmlacademy-react-2.appspot.com/six-cities/static/hotel/5.jpg",
+      "https://htmlacademy-react-2.appspot.com/six-cities/static/hotel/5.jpg",
+    ],
+    title: "Canal View Prinsengracht",
+    is_favorite: false,
+    is_premium: false,
+    rating: 3.1,
+    type: "room",
+    bedrooms: 1,
+    max_adults: 2,
+    price: 101,
+    goods: ["Breakfast", "Laptop friendly workspace"],
+    description:
+      "This is a place for dreamers to reset, reflect, and create. Designed with a 'slow' pace in mind, our hope is that you enjoy every part of your stay; from making local coffee by drip in the morning, choosing the perfect record to put on as the sun sets.",
+    location: {
+      latitude: 51.248402000000006,
+      longitude: 6.763314,
+      zoom: 16,
+    },
   });
 
   post.save();
   Posts.find({}).then((result) => console.log(result));
-  // return {
-  //   postData: post,
-  // };
+  return {
+    postData: post,
+  };
 });
 
 mongoose

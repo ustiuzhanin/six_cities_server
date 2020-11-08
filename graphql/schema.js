@@ -20,6 +20,18 @@ module.exports = buildSchema(`
   type Post {
     city: City!
     preview_image: String!
+    images: [String]
+    title: String!
+    is_favorite: Boolean!
+    is_premium: Boolean!
+    rating: Float!
+    type: String!
+    bedrooms: Int!
+    max_adults: Int!
+    price: Int!
+    goods: [String]
+    description: String!
+    location: Location!
   }
   
   type PostData {

@@ -10,7 +10,6 @@ module.exports = {
 
   posts: async function (args, req) {
     const posts = await Posts.find({});
-    console.log(posts[0].preview_image);
     return {
       postData: posts,
     };
