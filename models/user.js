@@ -7,9 +7,8 @@ const userSchema = new Schema({
   avatar_url: { type: String, required: true },
 });
 
-module.exports = mongoose.model("Users", userSchema);
+module.exports = mongoose.model("User", userSchema);
 // "host": {
-//   "id": 25,
 //   "name": "Angelina",
 //   "is_pro": true,
 //   "avatar_url": "img/avatar-angelina.jpg"

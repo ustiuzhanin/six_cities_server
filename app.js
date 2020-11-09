@@ -5,7 +5,6 @@ const { graphqlHTTP } = require("express-graphql");
 const graphqlSchema = require("./graphql/schema");
 const graphqlResolver = require("./graphql/resolvers");
 
-// const Kitten = require("./models/posts");
 const Posts = require("./models/posts");
 const User = require("./models/user");
 
@@ -22,36 +21,51 @@ app.use(
   })
 );
 
-app.use("/q", (req, res, next) => {
+app.use("/p", async (req, res, next) => {
+  const user = await User.findById("5fa9bcddab6d8a3ef8cba338");
+  console.log(user);
+  const post = new Posts({
+    host: user,
+    city: {
+      name: "Dusseldorf",
+      location: { latitude: 51.225402, longitude: 6.776314, zoom: 13 },
+    },
+    preview_image:
+      "https://htmlacademy-react-2.appspot.com/six-cities/static/hotel/9",
+    images: [
+      "https://htmlacademy-react-2.appspot.com/six-cities/static/hotel/5.jpg",
+      "https://htmlacademy-react-2.appspot.com/six-cities/static/hotel/5.jpg",
+    ],
+    title: "Canal View Prinsengracht",
+    is_favorite: false,
+    is_premium: false,
+    rating: 3.1,
+    type: "room",
+    bedrooms: 1,
+    max_adults: 2,
+    price: 101,
+    goods: ["Breakfast", "Laptop friendly workspace"],
+    description:
+      "This is a place for dreamers to reset, reflect, and create. Designed with a 'slow' pace in mind, our hope is that you enjoy every part of your stay; from making local coffee by drip in the morning, choosing the perfect record to put on as the sun sets.",
+    location: {
+      latitude: 51.248402000000006,
+      longitude: 6.763314,
+      zoom: 16,
+    },
+  });
+
+  post.save();
+  Posts.find({})
+    .populate("host")
+    .then((result) => console.log(result));
+  return {
+    posts: post,
+  };
+});
+
+app.use("/u", (req, res, next) => {
   console.log("qqqq");
-  // const post = new Posts({
-  //   city: {
-  //     name: "Dusseldorf",
-  //     location: { latitude: 51.225402, longitude: 6.776314, zoom: 13 },
-  //   },
-  //   preview_image:
-  //     "https://htmlacademy-react-2.appspot.com/six-cities/static/hotel/9",
-  //   images: [
-  //     "https://htmlacademy-react-2.appspot.com/six-cities/static/hotel/5.jpg",
-  //     "https://htmlacademy-react-2.appspot.com/six-cities/static/hotel/5.jpg",
-  //   ],
-  //   title: "Canal View Prinsengracht",
-  //   is_favorite: false,
-  //   is_premium: false,
-  //   rating: 3.1,
-  //   type: "room",
-  //   bedrooms: 1,
-  //   max_adults: 2,
-  //   price: 101,
-  //   goods: ["Breakfast", "Laptop friendly workspace"],
-  //   description:
-  //     "This is a place for dreamers to reset, reflect, and create. Designed with a 'slow' pace in mind, our hope is that you enjoy every part of your stay; from making local coffee by drip in the morning, choosing the perfect record to put on as the sun sets.",
-  //   location: {
-  //     latitude: 51.248402000000006,
-  //     longitude: 6.763314,
-  //     zoom: 16,
-  //   },
-  // });
+
   const user = new User({
     name: "Angelina",
     is_pro: true,
@@ -60,9 +74,9 @@ app.use("/q", (req, res, next) => {
 
   user.save();
   User.find({}).then((result) => console.log("result"));
-  // return {
-  //   user: user,
-  // };
+  return {
+    user: user,
+  };
 });
 
 mongoose
