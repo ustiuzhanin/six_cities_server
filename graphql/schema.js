@@ -5,6 +5,13 @@ module.exports = buildSchema(`
     text: String!
     views: Int!
   }
+  
+  type User {
+    _id: ID!
+    name: String!
+    is_pro: Boolean!
+    avatar_url: String!
+  }
 
   type Location {
     latitude: Float!
@@ -18,6 +25,7 @@ module.exports = buildSchema(`
   }
 
   type Post {
+    _id: ID!
     city: City!
     preview_image: String!
     images: [String]
@@ -33,14 +41,11 @@ module.exports = buildSchema(`
     description: String!
     location: Location!
   }
-  
-  type PostData {
-    postData: [Post!]!
-  }
 
   type RootQuery {
     hello: TestData!
-    posts: PostData
+    posts: [Post!]!
+    users: [User!]!
   }
 
   schema {

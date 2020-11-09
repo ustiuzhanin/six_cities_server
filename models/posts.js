@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const lodgingSchema = new Schema({
+const postSchema = new Schema({
   city: {
     name: { type: String, required: true },
     location: {
@@ -32,10 +32,4 @@ const lodgingSchema = new Schema({
   },
 });
 
-module.exports = mongoose.model("Posts", lodgingSchema);
-// "host": {
-//   "id": 25,
-//   "name": "Angelina",
-//   "is_pro": true,
-//   "avatar_url": "img/avatar-angelina.jpg"
-// }
+module.exports = mongoose.model("Posts", postSchema);
